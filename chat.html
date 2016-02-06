@@ -4,17 +4,23 @@
 
 <body>
   <h1>Warsaw Workshop chat!</h1>
-
+  <p><img src="/chrome.png" /></p>
   {{> chat}}
+
+
 </body>
 
 <template name="chat">
   <input type="text" placeholder="Write something">
-  <button>Submit</button>
+  <button id="submit">Submit</button>
   <ul>
     {{#each messages}}
-      <li>{{text}}</li>
+      {{> message}}
     {{/each}}
   </ul>
   <p>Counter: {{counter}}</p>
+</template>
+
+<template name="message">
+  <li class="{{isSelected}}">{{text}} {{#if isSelected}}<button>Remove</button> {{/if}}</li>
 </template>

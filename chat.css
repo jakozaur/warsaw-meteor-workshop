@@ -1,1 +1,4 @@
 /* CSS declarations go here */
+li.true {
+  background-color: grey;
+}

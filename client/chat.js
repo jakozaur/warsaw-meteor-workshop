@@ -1,8 +1,12 @@
 var reactiveCounter = new ReactiveVar(0);
-Meteor.startup(function () {
-  Meteor.setInterval(function () {
+
+function initialize() {
+  // ...
+}
+
+Meteor.startup(function() {
+  Meteor.setInterval(function() {
     reactiveCounter.set(reactiveCounter.get() + 1);
-    console.log("Counter: " + reactiveCounter.get());
   }, 1000);
 });
 
@@ -16,7 +20,7 @@ Template.chat.helpers({
 });
 
 Template.chat.events({
-  'click button': function(event, tmpl) {
+  'click #submit': function(event, tmpl) {
     console.log("Button click!");
     var text = tmpl.$("input").val();
     Messages.insert({
