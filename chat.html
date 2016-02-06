@@ -1,0 +1,19 @@
+<head>
+  <title>chat</title>
+</head>
+
+<body>
+  <h1>Warsaw Workshop chat!</h1>
+
+  {{> chat}}
+</body>
+
+<template name="chat">
+  <input type="text" placeholder="Write something">
+  <button>Submit</button>
+  <ul>
+    {{#each messages}}
+      <li>{{text}}</li>
+    {{/each}}
+  </ul>
+</template>
