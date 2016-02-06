@@ -1,6 +1,17 @@
+var reactiveCounter = new ReactiveVar(0);
+Meteor.startup(function () {
+  Meteor.setInterval(function () {
+    reactiveCounter.set(reactiveCounter.get() + 1);
+    console.log("Counter: " + reactiveCounter.get());
+  }, 1000);
+});
+
 Template.chat.helpers({
   messages: function() {
-    return Messages.find();
+    return Messages.find({}, {sort: {creationTime: -1}});
+  },
+  counter: function() {
+    return reactiveCounter.get();
   }
 });
 
