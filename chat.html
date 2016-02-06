@@ -18,6 +18,10 @@
       {{> message}}
     {{/each}}
   </ul>
+  {{#if showLessButton}}
+    <button id="show-less">Show less messages</button>
+  {{/if}}
+  <button id="show-more">Show more messages</button>
   <p>Counter: {{counter}}</p>
 </template>
 

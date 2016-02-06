@@ -1,8 +1,10 @@
 var reactiveCounter = new ReactiveVar(0);
 
-function initialize() {
-  // ...
-}
+showLastMessages = new ReactiveVar(10);
+
+Tracker.autorun(function () {
+  Meteor.subscribe("lastMessages", showLastMessages.get());
+});
 
 Meteor.startup(function() {
   Meteor.setInterval(function() {
@@ -16,6 +18,9 @@ Template.chat.helpers({
   },
   counter: function() {
     return reactiveCounter.get();
+  },
+  showLessButton: function() {
+    return showLastMessages.get() > 10;
   }
 });
 
@@ -28,5 +33,11 @@ Template.chat.events({
       creationTime: Date.now()
     });
     tmpl.$("input").val("");
+  },
+  'click #show-more': function() {
+    showLastMessages.set(showLastMessages.get() + 10);
+  },
+  'click #show-less': function() {
+    showLastMessages.set(Math.max(showLastMessages.get() - 10, 10));
   }
 })
