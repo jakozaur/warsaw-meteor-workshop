@@ -21,6 +21,9 @@ Template.chat.helpers({
   },
   showLessButton: function() {
     return showLastMessages.get() > 10;
+  },
+  isMobile: function() {
+    return Meteor.isCordova;
   }
 });
 
@@ -28,7 +31,13 @@ Template.chat.events({
   'click #submit': function(event, tmpl) {
     console.log("Button click!");
     var text = tmpl.$("input").val();
+    var username = "<anonymous>";
+    if (Meteor.user() != null) {
+      username = Meteor.user().profile.name;
+    }
+
     Messages.insert({
+      username: username,
       text: text,
       creationTime: Date.now()
     });

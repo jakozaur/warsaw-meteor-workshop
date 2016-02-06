@@ -5,12 +5,17 @@
 <body>
   <h1>Warsaw Workshop chat!</h1>
   <p><img src="/chrome.png" /></p>
+  {{> loginButtons}}
+  <br><br>
   {{> chat}}
 
 
 </body>
 
 <template name="chat">
+  {{#if isMobile}}
+    <p>I'm on mobile</p>
+  {{/if}}
   <input type="text" placeholder="Write something">
   <button id="submit">Submit</button>
   <ul>
@@ -26,5 +31,5 @@
 </template>
 
 <template name="message">
-  <li class="{{isSelected}}">{{text}} {{#if isSelected}}<button>Remove</button> {{/if}}</li>
+  <li class="{{isSelected}}">{{username}}: {{text}} {{#if isSelected}}<button>Remove</button> {{/if}}</li>
 </template>
