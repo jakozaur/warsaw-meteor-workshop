@@ -28,6 +28,8 @@
   {{/if}}
   <button id="show-more">Show more messages</button>
   <p>Counter: {{counter}}</p>
+  
+  {{> quickForm collection="Messages" id="insertMEssage" type="insert"}}
 </template>
 
 <template name="message">
